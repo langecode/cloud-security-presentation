@@ -1,5 +1,11 @@
-#!/bin/bash
-export PROJECT=$1
+#!/usr/bin/env bash
+
+if [ -z $1 ]; then
+    echo "Project required as parameter"
+    exit 42
+fi
+
+PROJECT=$1
 
 echo "Starting Sonarqube.."
 
@@ -13,8 +19,9 @@ do
     sleep 0.2;
 done
 echo "Sonarqube is up. Scanning source code.."
+curl -u admin:admin -X POST "http://localhost:9000/api/users/change_password?login=admin&previousPassword=admin&password=sqDemo2021"
 
 # Scan the source code
-docker run --rm -ti -v $(pwd)/$PROJECT:/usr/src --link sonarqube -e SONAR_HOST_URL="http://sonarqube:9000" sonarsource/sonar-scanner-cli -Dsonar.projectKey=$PROJECT
+docker run --rm -ti -v $(pwd)/$PROJECT:/usr/src --link sonarqube -e SONAR_HOST_URL="http://sonarqube:9000" sonarsource/sonar-scanner-cli -Dsonar.projectKey=$PROJECT -Dsonar.login=admin -Dsonar.password=sqDemo2021
 
 echo See "http://localhost:9000/dashboard?id=$PROJECT"

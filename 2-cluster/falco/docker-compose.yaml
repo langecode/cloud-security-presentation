@@ -27,11 +27,11 @@ services:
       - http_output.enabled=true
       - -o
       - http_output.url=http://sidekick:2801/
-    volumes:
-    - /boot:/host/boot:ro
-    - /lib/modules:/host/lib/modules:ro
-    - /usr:/host/usr:ro
-    - /etc:/host/etc:ro
-    - /var/run/docker.sock:/host/var/run/docker.sock
-    - /dev:/host/dev
-    - /proc:/host/proc:ro
+    # volumes:
+    # - /boot:/host/boot:ro
+    # - /lib/modules:/host/lib/modules:ro
+    # - /usr:/host/usr:ro
+    # - /etc:/host/etc:ro
+    # - /var/run/docker.sock:/host/var/run/docker.sock
+    # - /dev:/host/dev
+    # - /proc:/host/proc:ro

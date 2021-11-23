@@ -5,11 +5,12 @@
 Start and explore Falco and Falco sidekick.
 
 ```bash
-docker-compose up
+helm repo add falcosecurity https://falcosecurity.github.io/charts
+helm repo update
 
-o http://localhost:2802/ui
+helm install falco falcosecurity/falco --set falcosidekick.enabled=true --set falcosidekick.webui.enabled=true
 
 # Run in a terminal in a container on the machine.
 # This emulates a crypto miner using the stratum protocol
-curl stratum+tcp://evil-crypto-miners.com
+wget stratum+tcp://evil-crypto-miners.com
 ```

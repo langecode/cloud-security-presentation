@@ -7,6 +7,6 @@ polaris dashboard
 
 polaris audit --audit-path demo.yaml -f pretty
 
-kubeaudit all -f  demo.yaml  
+kubeaudit all -f  demo.yaml 
 ```
 
